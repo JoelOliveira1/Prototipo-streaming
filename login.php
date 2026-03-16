@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "conectar.php";
 
 $email = $_POST['email'];
@@ -12,13 +13,24 @@ if($result->num_rows > 0){
     $usuario = $result->fetch_assoc();
 
     if(password_verify($senha, $usuario['senha'])){
-        echo "Login correto";
+
+        $_SESSION['usuario'] = $usuario['nome'];
+
+        header("Location: index.php");
+        exit();
+
     } else {
-        echo "Senha incorreta";
+
+        header("Location: login.html?erro=senha");
+        exit();
+
     }
 
 }else{
-    echo "Usuário não encontrado";
+
+    header("Location: login.html?erro=usuario");
+    exit();
+
 }
 
 ?>

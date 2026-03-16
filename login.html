@@ -28,6 +28,19 @@
            
 
             </form>
+            <script>
+                const params = new URLSearchParams(window.location.search);
+                const erro = params.get("erro");
+
+                if(erro === "senha"){
+                    alert("Senha incorreta");
+                }
+
+                if(erro === "usuario"){
+                    alert("Usuário não encontrado");
+                }
+            </script>
         </div>
+    
     </body>
 </html>

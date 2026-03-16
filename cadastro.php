@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "conectar.php";
 
 $nome = $_POST['nome'];
@@ -11,9 +12,18 @@ $sql = "INSERT INTO usuarios (nome, email, senha)
 VALUES ('$nome','$email','$senhaHash')";
 
 if($conn->query($sql) === TRUE){
-    echo "Cadastro realizado com sucesso";
+
+    // cria sessão do usuário
+    $_SESSION['usuario'] = $nome;
+
+    // abre o site
+    header("Location: index.php");
+    exit();
+
 }else{
+
     echo "Erro: " . $conn->error;
+
 }
 
 ?>

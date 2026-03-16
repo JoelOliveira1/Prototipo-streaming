@@ -54,11 +54,16 @@ body{
     opacity:0.8;
 }
 
-
+.boas-vindas{
+    width:95%;
+    margin: 120px auto 10px auto;
+    color:white;
+    font-size:20px;
+}
 
 .container-filmes{
     width:95%;
-    margin:120px auto 40px auto;
+    margin:95px auto 40px auto;
 
     display:grid;
     grid-template-columns:repeat(4, 1fr);

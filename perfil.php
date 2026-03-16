@@ -16,7 +16,7 @@
         <h1>Nityfrix</h1>
 
         <nav>
-            <a href="index.html">Início</a>
+            <a href="index.php">Início</a>
             <a href="#">Filmes</a>
             <a href="#">Séries</a>
             <a href="#">Minha Lista</a>
