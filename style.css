@@ -125,7 +125,11 @@ button{
 }
 
 .sem-conta{
+    width:100%;
     color: rgb(250, 250, 247);
-    padding:10px;
-    margin:10px 0;
+    margin:20px 0;
+}
+
+.esqueci-senha{
+    margin: 30px ;
 }
