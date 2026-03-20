@@ -138,3 +138,12 @@ button{
 .esqueci-senha{
     margin: 30px ;
 }
+
+.perfil-container{
+    width:500px;
+    margin:120px auto;
+    background:#111;
+    padding:30px;
+    border-radius:10px;
+    color:white;
+}

@@ -13,10 +13,10 @@ VALUES ('$nome','$email','$senhaHash')";
 
 if($conn->query($sql) === TRUE){
 
-    // cria sessão do usuário
+
     $_SESSION['usuario'] = $nome;
 
-    // abre o site
+
     header("Location: index.php");
     exit();
 
