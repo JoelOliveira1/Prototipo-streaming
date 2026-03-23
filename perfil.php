@@ -38,17 +38,19 @@ $usuario = $result->fetch_assoc();
 
 <div class="perfil-container">
 
-<h2>Perfil do usuário</h2>
+    <h2>Perfil do usuário</h2>
 
-<p><strong>Nome:</strong> <?php echo $usuario['nome']; ?></p>
+    <p><strong>Nome:</strong> <?php echo $usuario['nome']; ?></p>
 
-<p><strong>Email:</strong> <?php echo $usuario['email']; ?></p>
-    <div class= "logout">
-        <a href="logout.php">Sair</a>  
-    </div>
+    <p><strong>Email:</strong> <?php echo $usuario['email']; ?></p>
+
+    <nav>
+        <form action="logout.php" method="POST">
+        <button class="logout">Sair da Conta</button>
+        </form>
+    </nav>
+
 </div>
-
-
 
 </body>
 </html>

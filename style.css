@@ -140,18 +140,26 @@ button{
 }
 
 .perfil-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-self: center;
     width:500px;
-    margin:120px auto;
+    margin: 120px 0;
     background:#111;
     padding:30px;
     border-radius:10px;
     color:white;
+    gap: 20px;
 }
 
 .logout{
-    color: white;
-    margin:120px auto;
+    margin: 20px 0;
     background:red;
-    padding:8px 15px;
-    border-radius:5px;
+    color:white;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+
 }
