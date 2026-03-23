@@ -43,10 +43,12 @@ $usuario = $result->fetch_assoc();
 <p><strong>Nome:</strong> <?php echo $usuario['nome']; ?></p>
 
 <p><strong>Email:</strong> <?php echo $usuario['email']; ?></p>
-
-<a href="logout.php"class= "Logout">Sair</a>
-
+    <div class= "logout">
+        <a href="logout.php">Sair</a>  
+    </div>
 </div>
+
+
 
 </body>
 </html>

@@ -149,6 +149,8 @@ button{
 }
 
 .logout{
+    color: white;
+    margin:120px auto;
     background:red;
     padding:8px 15px;
     border-radius:5px;
