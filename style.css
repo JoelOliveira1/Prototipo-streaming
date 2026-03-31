@@ -1,165 +1,427 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-
-body{
-    background-color:rgb(0, 0, 0);
-    font-family:Arial, Helvetica, sans-serif;
+body {
+    background-color: #0a0a0a;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #f0f0f0;
+    min-height: 100vh;
 }
 
-
-.menu{
-    background-color:rgba(70, 0, 128, 0.85);
-    color:white;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px 40px;
-    position:fixed;
-    top:0;
-    width:100%;
-    z-index:1000;
-    transition:0.3s;
-    backdrop-filter: blur(4px);
-    box-shadow:0 6px 20px rgba(0,0,0,0.7);
-
-}
-.menu:hover{
-    padding:35px 40px;
-}
-.menu nav a span{
-    opacity:0;
-    margin-left:6px;
-    transition:0.3s;
-
-}
-.menu nav{
-    display:flex;
-    gap:40px;
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
-.menu nav a{
-    color:white;
-    text-decoration:none;
-    margin-left:0;
-}
-
-.menu nav a:visited{
-    color:white;
-}
-.menu nav a:hover{
-    opacity:0.8;
-}
-
-.boas-vindas{
-    width:95%;
-    margin: 120px auto 10px auto;
-    color:white;
-    font-size:20px;
-}
-
-.container-filmes{
-    width:95%;
-    margin:95px auto 40px auto;
-
-    display:grid;
-    grid-template-columns:repeat(4, 1fr);
-    gap:10px;
-    row-gap: 60px;
-}
-
-
-.box-filme{
-    background-color:rgb(71, 68, 68);
-    height:180px;
-    border-radius:8px;
-
-    transition:0.3s;
-    position:relative;
-    z-index:1;
-}
-
-.box-filme:hover{
-    transform:scale(1.05);
-}
-
-
-
-
-.perfil{
-    width: 80%;
-    height: 500px;
-    margin: 140px auto;
-    background-color: rgb(105, 102, 102);
-    border-radius: 6px;
-
-    color: rgb(243, 242, 250);
-    font-size: 30px;
-    font-weight: bold;
-    display:flex;
-    justify-content:center ;
-    align-items:normal;
-}
-
-
-
-.login-container{
-    color: white;
-    background:#7a7a7ac5;
-    padding:40px;
-    border-radius:10px;
-    width:300px;
-    margin:140px  auto;
-}
-input{
-    width:100%;
-    padding:10px;
-    margin:10px 0;
-}
-
-button{
-    width:100%;
-    padding:10px;
-    background:rgb(24, 12, 129);
-    color:white;
-    border:none;
-    cursor:pointer;
-}
-
-.sem-conta{
-    width:100%;
-    color: rgb(250, 250, 247);
-    margin:20px 0;
-}
-
-.esqueci-senha{
-    margin: 30px ;
-}
-
-.perfil-container{
+/* Menu de navegação*/
+.menu {
+    background-color: rgba(50, 0, 100, 0.90);
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    justify-self: center;
-    width:500px;
-    margin: 120px 0;
-    background:#111;
-    padding:30px;
-    border-radius:10px;
-    color:white;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    transition: padding 0.3s;
+}
+
+.menu:hover {
+    padding: 22px 40px;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #c084fc;
+    letter-spacing: 2px;
+}
+
+.menu nav {
+    display: flex;
+    gap: 30px;
+}
+
+.menu nav a {
+    color: #e0e0e0;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+.menu nav a:hover {
+    color: #c084fc;
+}
+
+/* Seção de boas-vindas */
+.boas-vindas {
+    width: 90%;
+    margin: 110px auto 10px auto;
+    padding: 20px 0;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.boas-vindas h2 {
+    font-size: 1.5rem;
+    color: #f0f0f0;
+}
+
+.boas-vindas p {
+    color: #888;
+    margin-top: 4px;
+    font-size: 0.9rem;
+}
+
+/* Título de seção (ex: "Filmes", "Séries") */
+.titulo-secao {
+    width: 90%;
+    margin: 20px auto 15px auto;
+    font-size: 1.2rem;
+    color: #c084fc;
+    font-weight: 600;
+}
+
+/* Grade de filmes/séries */
+.container-filmes {
+    width: 90%;
+    margin: 0 auto 60px auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
 
-.logout{
-    margin: 20px 0;
-    background:red;
-    color:white;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
-    font-weight:bold;
+/* Card individual de filme/série */
+.box-filme {
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
 
+.box-filme:hover {
+    transform: scale(1.04);
+    box-shadow: 0 8px 30px rgba(192, 132, 252, 0.3);
+}
+
+/* Imagem da capa */
+.capa-filme {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+
+    /* Fallback cinza enquanto imagem não carrega */
+    background-color: #333;
+}
+
+/* Informações abaixo da capa */
+.info-filme {
+    padding: 12px 14px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.info-filme h4 {
+    width: 100%;
+    font-size: 0.95rem;
+    color: #f0f0f0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Badge "Filme" ou "Série" */
+.badge-tipo {
+    background-color: #4a0080;
+    color: #e0c0ff;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.ano {
+    color: #888;
+    font-size: 0.8rem;
+}
+
+/* Link que envolve a capa e as informações */
+.link-filme {
+    display: block;
+    color: inherit;
+}
+
+/*  Botão de favoritar (coração) nos cards */
+.btn-favoritar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    color: #888;
+    font-size: 1.3rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s, background 0.2s, transform 0.2s;
+    z-index: 10;
+}
+
+.btn-favoritar:hover {
+    background: rgba(0, 0, 0, 0.85);
+    color: #f87171;
+    transform: scale(1.15);
+}
+
+/* Estado favoritado: coração vermelho */
+.btn-favoritar.favoritado {
+    color: #ef4444;
+    background: rgba(0, 0, 0, 0.75);
+}
+
+/* Página de detalhes do filme*/
+.detalhe-container {
+    width: 90%;
+    max-width: 900px;
+    margin: 110px auto 60px auto;
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.detalhe-capa {
+    flex-shrink: 0;
+    width: 260px;
+}
+
+.detalhe-capa img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+    background-color: #333;
+}
+
+.detalhe-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.detalhe-info h2 {
+    font-size: 2rem;
+    color: #f0f0f0;
+    line-height: 1.2;
+}
+
+.detalhe-tags {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sinopse {
+    color: #bbb;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+/* Botão de favoritar na página de detalhes */
+.btn-favoritar-detalhe {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: 2px solid #888;
+    color: #888;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.2s;
+    width: fit-content;
+}
+
+.btn-favoritar-detalhe .icone-coracao {
+    font-size: 1.2rem;
+}
+
+.btn-favoritar-detalhe:hover {
+    border-color: #ef4444;
+    color: #ef4444;
+}
+
+.btn-favoritar-detalhe.favoritado {
+    border-color: #ef4444;
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+}
+
+/* Botão voltar */
+.btn-voltar {
+    color: #c084fc;
+    font-size: 0.9rem;
+    transition: opacity 0.2s;
+    width: fit-content;
+}
+
+.btn-voltar:hover {
+    opacity: 0.7;
+}
+
+/* Página de perfil */
+.perfil-pagina {
+    width: 90%;
+    max-width: 1100px;
+    margin: 110px auto 60px auto;
+}
+
+.perfil-container {
+    background: #141414;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    padding: 30px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 480px;
+    margin-bottom: 50px;
+}
+
+.perfil-container h2 {
+    font-size: 1.4rem;
+    color: #c084fc;
+    border-bottom: 1px solid #2a2a2a;
+    padding-bottom: 12px;
+}
+
+.perfil-dados {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: #ccc;
+    font-size: 0.95rem;
+}
+
+.perfil-dados strong {
+    color: #f0f0f0;
+}
+
+.btn-logout {
+    background: #dc2626;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background 0.2s;
+    width: fit-content;
+}
+
+.btn-logout:hover {
+    background: #b91c1c;
+}
+
+/* Seção de favoritos no perfil */
+.favoritos-secao h3 {
+    font-size: 1.3rem;
+    color: #ef4444;
+    margin-bottom: 20px;
+}
+
+.sem-favoritos {
+    color: #888;
+    font-size: 0.95rem;
+}
+
+.sem-favoritos a {
+    color: #c084fc;
+}
+
+.sem-favoritos a:hover {
+    text-decoration: underline;
+}
+
+/* Animação de saída ao desfavoritar no perfil */
+.box-filme {
+    transition: transform 0.3s, box-shadow 0.3s, opacity 0.3s;
+}
+
+/*Responsividade*/
+
+/* Tablet (até 1024px): 3 colunas */
+@media (max-width: 1024px) {
+    .container-filmes {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Tablet pequeno (até 768px): 2 colunas */
+@media (max-width: 768px) {
+    .menu {
+        padding: 12px 20px;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .menu:hover {
+        padding: 18px 20px;
+    }
+
+    .menu nav {
+        gap: 16px;
+    }
+
+    .boas-vindas {
+        margin-top: 130px;
+    }
+
+    .container-filmes {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .detalhe-container {
+        flex-direction: column;
+        margin-top: 140px;
+    }
+
+    .detalhe-capa {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .perfil-pagina {
+        margin-top: 140px;
+    }
+}
+
+/* Celular (até 480px): 1 coluna */
+@media (max-width: 480px) {
+    .container-filmes {
+        grid-template-columns: 1fr;
+    }
+
+    .menu nav {
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }

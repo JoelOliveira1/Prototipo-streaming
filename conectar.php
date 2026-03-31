@@ -1,14 +1,18 @@
 <?php
 
-$host = "localhost";
-$user = "root";
-$pass = "";
-$db = "nityfrix";
+$host     = "localhost";
+$usuario  = "root";       
+$senha    = "";           
+$banco    = "nityfrix";   
 
-$conn = new mysqli($host, $user, $pass, $db);
 
-if($conn->connect_error){
-    die("Erro de conexão: " . $conn->connect_error);
+$conn = new mysqli($host, $usuario, $senha, $banco);
+
+// Verifica se houve erro na conexão
+if ($conn->connect_error) {
+    die("Erro ao conectar ao banco de dados: " . $conn->connect_error);
 }
 
+
+$conn->set_charset("utf8");
 ?>

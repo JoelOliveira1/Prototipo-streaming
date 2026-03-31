@@ -4,53 +4,125 @@ include "conectar.php";
 
 $nome = $_SESSION['usuario'];
 
-$sql = "SELECT * FROM usuarios WHERE nome='$nome'";
-$result = $conn->query($sql);
+// Busca os dados do usuário
+$sql_user = "SELECT * FROM usuarios WHERE nome = '$nome'";
+$res_user = $conn->query($sql_user);
+$usuario  = $res_user->fetch_assoc();
 
-$usuario = $result->fetch_assoc();
+// Busca os filmes favoritados pelo usuário
+// O JOIN combina as tabelas favoritos e filmes
+$sql_favoritos = "
+    SELECT f.*
+    FROM filmes f
+    INNER JOIN favoritos fav ON fav.filme_id = f.id
+    WHERE fav.usuario_id = {$usuario['id']}
+    ORDER BY f.tipo, f.titulo
+";
+$favoritos = $conn->query($sql_favoritos);
 ?>
-
 <!DOCTYPE html>
-<html>
-
+<html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<title>Perfil</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - Nityfrix</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<header class="menu">
-<h1>Nityfrix</h1>
+    <!-- Cabeçalho -->
+    <header class="menu">
+        <h1 class="logo">Nityfrix</h1>
+        <nav>
+            <a href="index.php">Início</a>
+            <a href="index.php?tipo=filme">Filmes</a>
+            <a href="index.php?tipo=serie">Séries</a>
+            <a href="perfil.php">Perfil</a>
+        </nav>
+    </header>
 
-<nav>
-<a href="index.php">Início</a>
-<a href="#">Filmes</a>
-<a href="#">Séries</a>
-<a href="#">Minha Lista</a>
-<a href="perfil.php">Perfil</a>
+    <main class="perfil-pagina">
 
-</nav>
+        <!-- Informações do usuário -->
+        <section class="perfil-container">
+            <h2>Perfil do Usuário</h2>
 
-</header>
+            <div class="perfil-dados">
+                <p><strong>Nome:</strong> <?php echo htmlspecialchars($usuario['nome']); ?></p>
+                <p><strong>Email:</strong> <?php echo htmlspecialchars($usuario['email']); ?></p>
+            </div>
 
+            <form action="logout.php" method="POST">
+                <button class="btn-logout" type="submit">Sair da Conta</button>
+            </form>
+        </section>
 
-<div class="perfil-container">
+        <!-- Lista de favoritos do usuário -->
+        <section class="favoritos-secao">
+            <h3>Minha Lista ♥</h3>
 
-    <h2>Perfil do usuário</h2>
+            <?php if ($favoritos->num_rows === 0): ?>
+                <p class="sem-favoritos">Você ainda não favoritou nenhum título. <a href="index.php">Explorar títulos</a></p>
 
-    <p><strong>Nome:</strong> <?php echo $usuario['nome']; ?></p>
+            <?php else: ?>
+                <div class="container-filmes">
+                    <?php while ($filme = $favoritos->fetch_assoc()): ?>
 
-    <p><strong>Email:</strong> <?php echo $usuario['email']; ?></p>
+                        <article class="box-filme">
+                            <a href="filme.php?id=<?php echo $filme['id']; ?>" class="link-filme">
+                                <img
+                                    src="imagens/<?php echo $filme['imagem']; ?>"
+                                    alt="<?php echo htmlspecialchars($filme['titulo']); ?>"
+                                    class="capa-filme"
+                                >
+                                <div class="info-filme">
+                                    <h4><?php echo htmlspecialchars($filme['titulo']); ?></h4>
+                                    <span class="badge-tipo"><?php echo ucfirst($filme['tipo']); ?></span>
+                                    <span class="ano"><?php echo $filme['ano']; ?></span>
+                                </div>
+                            </a>
 
-    <nav>
-        <form action="logout.php" method="POST">
-        <button class="logout">Sair da Conta</button>
-        </form>
-    </nav>
+                            <!-- Coração já preenchido pois está favoritado -->
+                            <button
+                                class="btn-favoritar favoritado"
+                                data-id="<?php echo $filme['id']; ?>"
+                                title="Remover dos favoritos"
+                            >
+                                ♥
+                            </button>
+                        </article>
 
-</div>
+                    <?php endwhile; ?>
+                </div>
+            <?php endif; ?>
+        </section>
+
+    </main>
+
+    <script>
+    // Remove favorito diretamente da lista do perfil
+    document.querySelectorAll('.btn-favoritar').forEach(function(botao) {
+        botao.addEventListener('click', function() {
+            const filmeId = this.dataset.id;
+            const card    = this.closest('.box-filme');
+
+            fetch('favoritar.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: 'filme_id=' + filmeId
+            })
+            .then(function(r) { return r.text(); })
+            .then(function(resultado) {
+                if (resultado === 'removido') {
+                    // Remove o card da tela com animação
+                    card.style.opacity = '0';
+                    card.style.transform = 'scale(0.8)';
+                    setTimeout(function() { card.remove(); }, 300);
+                }
+            });
+        });
+    });
+    </script>
 
 </body>
 </html>
