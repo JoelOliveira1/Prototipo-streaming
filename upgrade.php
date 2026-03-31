@@ -60,7 +60,7 @@ session_start();
             color:#ccc;
             font-size:0.9rem;
         ">
-            <li style="margin:8px 0;">📌 Criar listas</li>
+            <li style="margin:8px 0;">📌 Assistir Filmes</li>
             <li style="margin:8px 0;">🔥 Conteúdos exclusivos</li>
         </ul>
 
