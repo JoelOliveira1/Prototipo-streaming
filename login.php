@@ -16,6 +16,7 @@ if($result->num_rows > 0){
 
         $_SESSION['usuario'] = $usuario['nome'];
         $_SESSION['usuario_id'] = $usuario['id'];
+        $_SESSION['categoria'] = $usuario['categoria'];
 
         header("Location: index.php");
         exit();

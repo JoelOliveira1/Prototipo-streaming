@@ -50,6 +50,7 @@ $favoritos = $conn->query($sql_favoritos);
             <div class="perfil-dados">
                 <p><strong>Nome:</strong> <?php echo htmlspecialchars($usuario['nome']); ?></p>
                 <p><strong>Email:</strong> <?php echo htmlspecialchars($usuario['email']); ?></p>
+                <p><strong>Categoria:</strong> <?php echo htmlspecialchars($usuario['categoria']); ?></p>
             </div>
 
             <form action="logout.php" method="POST">
