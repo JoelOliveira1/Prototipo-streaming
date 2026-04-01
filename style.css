@@ -512,3 +512,64 @@ a {
 .sem-conta a:hover, .esqueci-senha a:hover {
     text-decoration: underline;
 }
+
+/* ===== FUNDO ESTILIZADO LOGIN ===== */
+
+body::before {
+    content: "";
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background: radial-gradient(circle at 30% 50%, rgba(192,132,252,0.15), transparent 40%),
+                radial-gradient(circle at 70% 50%, rgba(168,85,247,0.15), transparent 40%);
+    animation: movimento 10s linear infinite;
+    z-index: 0;
+}
+
+@keyframes movimento {
+    0% { transform: translate(0,0); }
+    50% { transform: translate(50px, 30px); }
+    100% { transform: translate(0,0); }
+}
+
+/* texto grande no fundo */
+.background-logo {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+
+    font-size: clamp(40px, 8vw, 100px);
+    color: rgba(192,132,252,0.08);
+
+    font-weight: bold;
+    letter-spacing: 6px;
+
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* garante que o login fica acima */
+.login-container {
+    position: relative;
+    z-index: 1;
+}
+
+body::before,
+body::after {
+    pointer-events: none;
+}
+
+.brand-top {
+    position: fixed;
+    top: 30px;
+    left: 40px;
+
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #c084fc;
+
+    letter-spacing: 2px;
+    z-index: 2;
+}
